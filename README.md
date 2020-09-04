@@ -10,13 +10,16 @@ Few are born with an innate understanding of the subtle art of Emojimancy, howev
 ### Emojaliases
 🙂: Want to drop one of those pesky low rolls? Look no further than this arcane sigil
   - Example: `1d20🙂` == `1d20dl`
+
 🙁: The opposite of the above, of course
   - Example: `1d20🙁` == `1d20dh`
+
 🍆: As should be immediately obvious, the eggplant emoji represents the D.
   - Example: `1🍆6` == `1D6`
 
 ### Emojoverides
 💩: For when nothing but a natural 1 will suffice
+
 🥳: For when you wish to party with a natty twenty
 
 ### Wild Emojimancy
