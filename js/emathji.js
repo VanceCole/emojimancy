@@ -32,8 +32,12 @@ Roll.prototype._replaceData = function(formula) {
  * @param {?}      user
  */
 function chatIntercept(data, options, user) {
-  if (!data.type === CONST.CHAT_MESSAGE_TYPES.ROLL) return;
+  if (data.type !== CONST.CHAT_MESSAGE_TYPES.ROLL) return;
   const oldRoll = JSON.parse(data.roll);
   console.log(data);
   Emathji.hasStealtherator(data.content);
 }
+
+Hooks.on('renderChatMessage', (log, html, data) => {
+  html.remove();
+});
