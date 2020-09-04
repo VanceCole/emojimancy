@@ -1,76 +1,116 @@
 // import { replaceAll, replaceAliases } from './helpers.js';
 
 export const emojerators = {
+  // Emojerators
+  '⭐': {
+    aliases: ['🌟', ':star:', ':star2:'],
+    note: 'Alias for `*`',
+    example: '`1⭐1` == `1+1`',
+    parse: (formula) => formula.replace(/⭐/g, '*'),
+  },
+  '🔪': {
+    aliases: [':knife:', '🗡️', ':dagger:', '🪓', ':axe:', '🩹', ':adhesive_bandage'],
+    note: 'Alias for `/`',
+    example: '`1⭐1` == `1+1`',
+    parse: (formula) => formula.replace(/🔪/g, '/'),
+  },
+  '➕': {
+    aliases: [':plus:', '💍', ':ring:'],
+    note: 'Alias for `+`',
+    example: '`1➕1` == `1+1`',
+    parse: (formula) => formula.replace(/➕/g, '+'),
+  },
+  '➖': {
+    aliases: [':minus:', '🚬', ':cigarette'],
+    note: 'Alias for `-`',
+    example: '`1➖1` == `1-1`',
+    parse: (formula) => formula.replace(/➖/g, '-'),
+  },
+  '⬆️': {
+    aliases: [':up_arrow:'],
+    note: 'Alias for `+1`',
+    example: '`1d6⬇⬆️` == `1d6+1`',
+    parse: (formula) => formula.replace(/⬆️/g, '+1'),
+  },
+  '⬇️': {
+    aliases: [':down_arrow:'],
+    note: 'Alias for `-1`',
+    example: '`1d6⬇️` == `1d6-1`',
+    parse: (formula) => formula.replace(/⬇️/g, '-1'),
+  },
+  // Dice modimoji
   '🙂': {
-    name: 'slight_smile',
     aliases: [':slight_smile:'],
-    // Alias for dl
+    note: 'Want to drop one of those pesky 💩 rolls? Look no further than this arcane sigil',
+    example: '`1d20🙂` == `1d20dl`',
     parse: (formula) => formula.replace(/🙂/g, 'dl'),
   },
   '🙁': {
-    name: 'slight_frown',
     aliases: [':slight_frown:'],
-    // Alias for dh
+    note: 'The opposite of the above, of course',
+    example: '`1d20🙁` == `1d20dh`',
     parse: (formula) => formula.replace(/🙁/g, 'dh'),
   },
+  // Overmoji
   '💩': {
-    name: 'poop',
     aliases: [':poop:'],
-    // Always 1
+    note: 'Override for `1`',
+    example: '`1d20+100+1000💩` == `1`',
     parse: () => '1',
   },
   '🥳': {
-    name: 'partying_face',
     aliases: [':partying_face:'],
-    // Always 20
+    note: 'Override for `20`',
+    example: '`1d20-100000🥳` == `20`',
     parse: () => '20',
   },
+  // Alimoji
   '🍆': {
-    name: 'eggplant',
     aliases: [':eggplant:'],
-    // Alias for the D
+    note: 'As should be immediately obvious, the 🍆 represents the `D`.',
+    example: '`1🍆6` == `1D6`',
     parse: (formula) => formula.replace(/🍆/g, 'D'),
   },
-  '🥔': {
-    name: 'potato',
-    aliases: [':potato:'],
-    // Alias for 1
-    parse: (formula) => formula.replace(/🥔/g, '1'),
-  },
-  '🎸': {
-    name: 'guitar',
-    aliases: [':guitar:'],
-    // Alias for 11
-    parse: (formula) => formula.replace(/🎸/g, '11'),
-  },
-  '🐱': {
-    name: 'cat',
-    aliases: ['🐈', ':cat:', ':cat2:'],
-    // Alias for 20
-    parse: (formula) => formula.replace(/🐱/g, '20'),
-  },
+  // Numeric Emoji
   '🐶': {
-    name: 'dog',
     aliases: ['💯', '🦮', '🐕', '🐩', '🐕‍🦺', '🐺', ':dog:', ':wolf:', ':poodle:', ':dog2:'],
-    // Alias for 100
+    note: 'As the goodest of ♂️ & ♀️, 🐕 are 💯',
+    example: '`/r 1d🐶` == `1d100`',
     parse: (formula) => formula.replace(/🐶/g, '100'),
   },
+  '🐱': {
+    aliases: ['🐈', ':cat:', ':cat2:'],
+    note: '🐈 are OK too, I rate them a 20',
+    example: '`/r 1d🐱` == `1d20`',
+    parse: (formula) => formula.replace(/🐱/g, '20'),
+  },
+  '🎸': {
+    aliases: [':guitar:'],
+    note: '🎸 go to `11`, of course.',
+    parse: (formula) => formula.replace(/🎸/g, '11'),
+  },
+  '🥔': {
+    aliases: [':potato:', '🥌', ':curling_stone:'],
+    note: 'Lame `1`s',
+    parse: (formula) => formula.replace(/🥔/g, '1'),
+  },
   '⏰': {
-    name: 'clock',
     aliases: [':clock:', '⏰', ':clock2:', '🕰️'],
+    note: 'Generate a 🔀 time of day',
+    example: '`/r ⏰` == `/r {1d12, 1d60, 1d2}`',
     parse: () => '{1d12, 1d60, 1d2}',
     post: (roll) => {},
   },
   '🤷': {
-    name: 'shrug',
     aliases: [':shrug:'],
-    /**
-     * 30% Chance to be become + or -
-     * 30% Chance to ignore the rest of function
-     *  5% Chance to become *
-     *  4% Chance to become /
-     *  1% Chance to become ^
-     */
+    note: `Meh? Unleash the power of the 🤷 to be thoroughly whelmed
+    - 30% Chance to ignore the rest of function
+     - 30% Chance to be become + or -
+     -  5% Chance to become *
+     -  4% Chance to become /
+     -  1% Chance to become ^
+    `,
+    example: '`1d20🤷5`',
     parse: (formula) => {
       const parts = formula.split('🤷');
       let newFormula = '';
@@ -98,4 +138,6 @@ export const stealtherators = [
   ':shushing_face:',
   '🐁',
   ':mouse:',
+  '🤥',
+  ':lying_face:',
 ];
