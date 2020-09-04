@@ -1,10 +1,7 @@
-# Emathji
-🤷 + 🤖 / 💩 = ❓
-
+# Emathji 🤷 + 🤖 / 💩 = ❓
 Allows you to harness the incredible power of Emojimancy in FoundryVTT.
 
 # Emojimancy Examples
-
 Few are born with an innate understanding of the subtle art of Emojimancy, however with studious dedication you too can unlock the full power of the marvelous arcane art.
 
 ### Emojaliases
@@ -18,10 +15,9 @@ Few are born with an innate understanding of the subtle art of Emojimancy, howev
   - Example: `1🍆6` == `1D6`
 
 ### Sneakymoji
-
 Don't want your players knowing you are wielding the awesome powers of Emojimancy against them? Just use your choice of Sneakymoji and they'll never suspect a thing.
 
-# 🤫🐁
+## 🤫🐁
 
 ### Emojoverides
 💩: For when nothing but a natural 1 will suffice
