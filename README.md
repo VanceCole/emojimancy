@@ -17,6 +17,12 @@ Few are born with an innate understanding of the subtle art of Emojimancy, howev
 🍆: As should be immediately obvious, the eggplant emoji represents the D.
   - Example: `1🍆6` == `1D6`
 
+### Sneakymoji
+
+Don't want your players knowing you are wielding the awesome powers of Emojimancy against them? Just use your choice of Sneakymoji and they'll never suspect a thing.
+
+# 🤫🐁
+
 ### Emojoverides
 💩: For when nothing but a natural 1 will suffice
 
