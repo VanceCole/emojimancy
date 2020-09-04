@@ -21,7 +21,7 @@ Hooks.on('preCreateChatMessage', chatIntercept);
 const og_replaceData = Roll.prototype._replaceData;
 Roll.prototype._replaceData = function(formula) {
   let f = formula;
-  if (Emathji.hasUnicode(formula)) f = Emathji.emojerate(formula);
+  if (Emathji.hasUnicode(formula)) f = Emathji.demojerate(formula);
   return og_replaceData.call(this, f);
 };
 
@@ -35,9 +35,5 @@ function chatIntercept(data, options, user) {
   if (data.type !== CONST.CHAT_MESSAGE_TYPES.ROLL) return;
   const oldRoll = JSON.parse(data.roll);
   console.log(data);
-  Emathji.hasStealtherator(data.content);
+  Emathji.hasSneakymoji(data.content);
 }
-
-Hooks.on('renderChatMessage', (log, html, data) => {
-  html.remove();
-});

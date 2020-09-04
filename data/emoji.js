@@ -11,7 +11,7 @@ export const emojerators = {
   '🔪': {
     aliases: [':knife:', '🗡️', ':dagger:', '🪓', ':axe:', '🩹', ':adhesive_bandage'],
     note: 'Alias for `/`',
-    example: '`1⭐1` == `1+1`',
+    example: '`1🔪1` == `1/1`',
     parse: (formula) => formula.replace(/🔪/g, '/'),
   },
   '➕': {
@@ -21,7 +21,7 @@ export const emojerators = {
     parse: (formula) => formula.replace(/➕/g, '+'),
   },
   '➖': {
-    aliases: [':minus:', '🚬', ':cigarette'],
+    aliases: [':minus:', '−', '🚬', ':cigarette'],
     note: 'Alias for `-`',
     example: '`1➖1` == `1-1`',
     parse: (formula) => formula.replace(/➖/g, '-'),
@@ -29,7 +29,7 @@ export const emojerators = {
   '⬆️': {
     aliases: [':up_arrow:'],
     note: 'Alias for `+1`',
-    example: '`1d6⬇⬆️` == `1d6+1`',
+    example: '`1d6⬆️` == `1d6+1`',
     parse: (formula) => formula.replace(/⬆️/g, '+1'),
   },
   '⬇️': {
@@ -41,13 +41,13 @@ export const emojerators = {
   // Dice modimoji
   '🙂': {
     aliases: [':slight_smile:'],
-    note: 'Want to drop one of those pesky 💩 rolls? Look no further than this arcane sigil',
+    note: 'Want to drop one of those pesky 💩 rolls? Look no further than this 🅰️rcane sigil',
     example: '`1d20🙂` == `1d20dl`',
     parse: (formula) => formula.replace(/🙂/g, 'dl'),
   },
   '🙁': {
     aliases: [':slight_frown:'],
-    note: 'The opposite of the above, of course',
+    note: 'The opposite of the ⬆️, of course',
     example: '`1d20🙁` == `1d20dh`',
     parse: (formula) => formula.replace(/🙁/g, 'dh'),
   },
@@ -56,13 +56,15 @@ export const emojerators = {
     aliases: [':poop:'],
     note: 'Override for `1`',
     example: '`1d20+100+1000💩` == `1`',
-    parse: () => '1',
+    parse: (formula) => formula,
+    post: (formula) => ({ formula, value: '20' }),
   },
   '🥳': {
     aliases: [':partying_face:'],
     note: 'Override for `20`',
     example: '`1d20-100000🥳` == `20`',
-    parse: () => '20',
+    parse: (formula) => formula,
+    post: (formula) => ({ formula, value: '1' }),
   },
   // Alimoji
   '🍆': {
@@ -87,11 +89,13 @@ export const emojerators = {
   '🎸': {
     aliases: [':guitar:'],
     note: '🎸 go to `11`, of course.',
+    example: '`/r 1d🎸` == `1d11`',
     parse: (formula) => formula.replace(/🎸/g, '11'),
   },
   '🥔': {
     aliases: [':potato:', '🥌', ':curling_stone:'],
     note: 'Lame `1`s',
+    example: '`/r 🥔d20` == `1d20`',
     parse: (formula) => formula.replace(/🥔/g, '1'),
   },
   '⏰': {
@@ -99,7 +103,6 @@ export const emojerators = {
     note: 'Generate a 🔀 time of day',
     example: '`/r ⏰` == `/r {1d12, 1d60, 1d2}`',
     parse: () => '{1d12, 1d60, 1d2}',
-    post: (roll) => {},
   },
   '🤷': {
     aliases: [':shrug:'],
@@ -110,7 +113,7 @@ export const emojerators = {
      -  4% Chance to become /
      -  1% Chance to become ^
     `,
-    example: '`1d20🤷5`',
+    example: '`1d20🤷5` == `1d20?`',
     parse: (formula) => {
       const parts = formula.split('🤷');
       let newFormula = '';
@@ -132,7 +135,7 @@ export const emojerators = {
   },
 };
 
-export const stealtherators = [
+export const sneakymoji = [
   '🤫',
   ':shush:',
   ':shushing_face:',

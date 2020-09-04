@@ -24,6 +24,7 @@ module.exports = {
     'no-mixed-operators': 'off',
     'no-param-reassign': 'off',
     'no-use-before-define': 'off',
+    'no-plusplus': 'off',
     'prefer-destructuring': [
       'error',
       { object: true, array: false },
