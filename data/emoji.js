@@ -62,16 +62,10 @@ export const emojerators = {
   },
 };
 
-export const emojerands = {
-
-};
-
-export const emojersults = {
-
-};
-
-export const stealtherands = [
+export const stealtherators = [
   '🤫',
   ':shush:',
   ':shushing_face:',
+  '🐁',
+  ':mouse:',
 ];

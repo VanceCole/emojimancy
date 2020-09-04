@@ -1,5 +1,82 @@
+import { log } from '../js/helpers.js';
+import { emojerators, stealtherators } from '../data/emoji.js';
+
 export default class Emathji {
-  constructor(string) {
-    this.string = string;
+  /**
+   * Tests if string has a given emoji and if so parses it
+   * @param {String} formula  String to be checked 
+   * @param {String} emoji    The emoji to seek
+   * @param {Object} data     The data for the emoji in question
+   */
+  static hasEmoji(formula, emoji) {
+    const { aliases, parse } = emojerators[emoji];
+    let f = Emathji.deAlias(formula, emoji, aliases);
+    if (f.indexOf(emoji) === -1) {
+      log(`${emoji} ? ❌`);
+    }
+    else {
+      log(`${emoji} ? ✔️`);
+      f = parse(f);
+    }
+    return f;
+  }
+
+  /**
+   * Parses formula strings to check for and perform emojifications
+   * @param {String}   formula    A dice formula
+   * @returns {String} Demojified version of formula
+   */
+  static emojerate(formula) {
+    log(`Emojerating ${formula}`);
+    let f = formula;
+    // eslint-disable-next-line no-restricted-syntax
+    Object.keys(emojerators).forEach((emoji) => {
+      f = Emathji.hasEmoji(f, emoji);
+    });
+    log(`Emojeration complete: ${f}`);
+    return f;
+  }
+
+  /**
+   * Checks if formula contains any stealtherators
+   * @param {*} formula   The formula to be tested
+   */
+  static hasStealtherator(formula) {
+    log(`Testing stealtherators in ${formula}`);
+    // eslint-disable-next-line no-restricted-syntax
+    return Object.values(stealtherators).some((emoji) => {
+      if (formula.indexOf(emoji) === -1) {
+        log(`${emoji} Stealthy? ❌`);
+      }
+      else {
+        log(`${emoji} Stealthy? ✔️`);
+        return true;
+      }
+      return false;
+    });
+  }
+
+  /**
+   * Quick'n'dirty check if a string is likely to contain emoji
+   * so we don't waste time running full search when it doesn't
+   * @param {String} text  The string to test
+   */
+  static hasUnicode(text) {
+    // eslint-disable-next-line no-control-regex
+    return /[^\u0000-\u00ff]/.test(text);
+  }
+
+  /**
+   * 
+   * @param {String} formula   The formula to be dealiased
+   * @param {String} truename  The one true name of the emoji
+   * @param {Array}  aliases   List of aliases to be tested
+   */
+  static deAlias(formula, truename, aliases) {
+    let f = formula;
+    aliases.forEach((alias) => {
+      f = f.replace(`/${alias}/g`, truename);
+    });
+    return f;
   }
 }
