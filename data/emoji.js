@@ -1,6 +1,19 @@
-// import { replaceAll, replaceAliases } from './helpers.js';
-
-export const emojerators = {
+export default {
+  // Stealthymojis
+  '🤫': {
+    aliases: [
+      '🤫',
+      ':shush:',
+      ':shushing_face:',
+      '🐁',
+      ':mouse:',
+      '🤥',
+      ':lying_face:',
+    ],
+    note: 'Stealthymojis: Don\'t want your players knowing you are wielding the awesome powers of Emojimancy against them? Just use your choice of Sneakymoji and they\'ll never suspect a thing.',
+    example: '`1⭐1` == `1+1`',
+    parse: (formula) => formula.replace(/🤫/g, ''),
+  },
   // Emojerators
   '⭐': {
     aliases: ['🌟', ':star:', ':star2:'],
@@ -56,15 +69,15 @@ export const emojerators = {
     aliases: [':poop:'],
     note: 'Override for `1`',
     example: '`1d20+100+1000💩` == `1`',
-    parse: (formula) => formula,
-    post: (formula) => ({ formula, value: '20' }),
+    parse: (formula) => formula.replace(/💩/g, ''),
+    post: () => '1',
   },
   '🥳': {
     aliases: [':partying_face:'],
     note: 'Override for `20`',
     example: '`1d20-100000🥳` == `20`',
-    parse: (formula) => formula,
-    post: (formula) => ({ formula, value: '1' }),
+    parse: (formula) => formula.replace(/🥳/g, ''),
+    post: () => '20',
   },
   // Alimoji
   '🍆': {
@@ -104,6 +117,7 @@ export const emojerators = {
     example: '`/r ⏰` == `/r {1d12, 1d60, 1d2}`',
     parse: () => '{1d12, 1d60, 1d2}',
   },
+  // Wild Emojimancy
   '🤷': {
     aliases: [':shrug:'],
     note: `Meh? Unleash the power of the 🤷 to be thoroughly whelmed
@@ -134,13 +148,3 @@ export const emojerators = {
     },
   },
 };
-
-export const sneakymoji = [
-  '🤫',
-  ':shush:',
-  ':shushing_face:',
-  '🐁',
-  ':mouse:',
-  '🤥',
-  ':lying_face:',
-];

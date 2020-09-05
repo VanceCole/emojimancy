@@ -1,5 +1,5 @@
 import Emathji from '../classes/Emathji.js';
-import { PATH, log } from './helpers.js';
+import { log } from './helpers.js';
 
 window.Emathji = Emathji;
 
@@ -19,9 +19,11 @@ Hooks.on('preCreateChatMessage', chatIntercept);
  */
 // eslint-disable-next-line camelcase
 const og_replaceData = Roll.prototype._replaceData;
-Roll.prototype._replaceData = function(formula) {
+Roll.prototype._replaceData = function _replaceData(formula) {
   let f = formula;
-  if (Emathji.hasUnicode(formula)) f = Emathji.demojerate(formula);
+  log('🎲 detected, engage the 🙉🩹');
+  if (Emathji.hasAnyMoji(formula)) f = Emathji.demojerate(formula);
+  log('🙈🩹 complete ❗');
   return og_replaceData.call(this, f);
 };
 
@@ -30,10 +32,29 @@ Roll.prototype._replaceData = function(formula) {
  * @param {Object} data
  * @param {?}      options
  * @param {?}      user
- */
+ */// eslint-disable-next-line no-unused-vars
 function chatIntercept(data, options, user) {
-  if (data.type !== CONST.CHAT_MESSAGE_TYPES.ROLL) return;
-  const oldRoll = JSON.parse(data.roll);
-  console.log(data);
-  Emathji.hasSneakymoji(data.content);
+  if (data.type === CONST.CHAT_MESSAGE_TYPES.ROLL) handleChatRoll(data);
+}
+
+function handleChatRoll(data) {
+  log('Intercepting ChatRoll 🚀');
+  // Check if roll has any emoji, if not just skip
+  const moji = Emathji.hasAnyMoji(data.content);
+  if (!moji) return;
+
+  // Run any post filters
+  const post = Emathji.postMojerate(data.content);
+
+  const r = JSON.parse(data.roll);
+  r.result = post;
+  r.total = post;
+  // Check if roll has any sneakymoji
+  const sneaky = Emathji.hasSneakymoji(data.content);
+  if (!sneaky) {
+    if (data.flavor) data.flavor += `\n[${data.content}]`;
+    else data.flavor = `[${Emathji.deAlias(data.content)}]`;
+  }
+  data.roll = JSON.stringify(r);
+  log('ChatRoll Handled 😏');
 }

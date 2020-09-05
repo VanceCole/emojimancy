@@ -1,5 +1,5 @@
 import { log } from '../js/helpers.js';
-import { emojerators, sneakymoji } from '../data/emoji.js';
+import emojerators from '../data/emoji.js';
 
 export default class Emathji {
   /**
@@ -8,13 +8,10 @@ export default class Emathji {
    * @param {String} emoji    The emoji to seek
    * @param {Object} data     The data for the emoji in question
    */
-  static hasEmoji(formula, emoji) {
-    const { aliases, parse } = emojerators[emoji];
-    let f = Emathji.deAlias(formula, emoji, aliases);
-    if (f.indexOf(emoji) === -1) {
-      log(`${emoji} ? ❌`);
-    }
-    else {
+  static parseEmoji(formula, emoji) {
+    let f = formula;
+    const { parse } = emojerators[emoji];
+    if (f.indexOf(emoji) !== -1) {
       log(`${emoji} ? ✔️`);
       f = parse(f);
     }
@@ -29,12 +26,30 @@ export default class Emathji {
   static demojerate(formula) {
     log(`Demojerating ${formula}`);
     let f = formula;
+    f = Emathji.deAlias(f);
     // eslint-disable-next-line no-restricted-syntax
     Object.keys(emojerators).forEach((emoji) => {
-      f = Emathji.hasEmoji(f, emoji);
+      f = Emathji.parseEmoji(f, emoji);
     });
     log(`Demojeration complete: ${f}`);
     return f;
+  }
+
+  static postMojerate(formula, value) {
+    log(`postMojerating: ${value}`);
+    let v = value;
+    const f = Emathji.deAlias(formula);
+    Object.keys(emojerators).forEach((emoji) => {
+      // Check if given emoji has a post function
+      if (typeof (emojerators[emoji].post) === 'function') {
+        if (Emathji.hasMoji(f, emoji)) {
+          log(`Applying ${emoji} postMojeration`);
+          v = emojerators[emoji].post(v);
+        }
+      }
+    });
+    log(`postMojeration complete: ${v}`);
+    return v;
   }
 
   /**
@@ -45,13 +60,18 @@ export default class Emathji {
   static hasSneakymoji(formula) {
     log(`Testing sneakymoji in ${formula}`);
     // eslint-disable-next-line no-restricted-syntax
-    return Object.values(sneakymoji).some((emoji) => {
-      if (formula.indexOf(emoji) !== -1) {
-        log(`${emoji} ? ✔️`);
-        return true;
-      }
-      return false;
-    });
+    return Object.values(emojerators['🤫'].aliases).some((emoji) => Emathji.hasMoji(formula, emoji));
+  }
+
+  /**
+   * Checks if formula has a specific emoji
+   */
+  static hasMoji(formula, emoji) {
+    if (formula.indexOf(emoji) !== -1) {
+      log(`${emoji} ? ✔️`);
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -60,9 +80,16 @@ export default class Emathji {
    * @param {String} text  The string to test
    * @returns {Boolean}    True if likely to have emoji
    */
-  static hasUnicode(text) {
+  static hasAnyMoji(text) {
     // eslint-disable-next-line no-control-regex
-    return /[^\u0000-\u00ff]/.test(text);
+    const unicds = /[^\u0000-\u00ff]/.test(text);
+    const colons = /(:.*):/gi.test(text);
+    if (unicds || colons) {
+      log(`hasAnyMoji? ${text} ✔️`);
+      return true;
+    }
+    log(`hasAnyMoji? ${text} ❌`);
+    return false;
   }
 
   /**
@@ -72,11 +99,17 @@ export default class Emathji {
    * @param {Array}  aliases   List of aliases to be tested
    * @returns {String} deAliased string
    */
-  static deAlias(formula, truename, aliases) {
+  static deAlias(formula) {
+    log(`deAliasing: ${formula}`);
     let f = formula;
-    aliases.forEach((alias) => {
-      f = f.replace(`/${alias}/g`, truename);
+    // eslint-disable-next-line no-restricted-syntax
+    Object.keys(emojerators).forEach((emoji) => {
+      const { aliases } = emojerators[emoji];
+      aliases.forEach((alias) => {
+        f = f.replace(new RegExp(alias, 'g'), emoji);
+      });
     });
+    log(`deAliasing complete: ${f}`);
     return f;
   }
 }
