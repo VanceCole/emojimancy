@@ -31,4 +31,41 @@ export default {
       }
     },
   },
+  '💡': {
+    aliases: [':lightbulb:', '🔦', ':flashlight:'],
+    note: 'Start/Stop Stopwatch',
+    example: '🩹💡',
+    parse: (string, data) => {
+      new Dialog({
+        title: 'Token Light Picker',
+        content: 'Pick the light source the selected token is holding.',
+        buttons: {
+          none: {
+            label: 'None',
+            callback: () => emathji.Helpers.tokenUpdate({ dimLight: null, brightLight: null, lightAngle: 360 }),
+          },
+          torch: {
+            label: 'Torch',
+            callback: () => emathji.Helpers.tokenUpdate({ dimLight: 40, brightLight: 20, lightAngle: 360 }),
+          },
+          lamp: {
+            label: 'Lamp',
+            callback: () => emathji.Helpers.tokenUpdate({ dimLight: 45, brightLight: 15, lightAngle: 360 }),
+          },
+          bullseye: {
+            label: 'Bullseye Lantern',
+            callback: () => emathji.Helpers.tokenUpdate({ dimLight: 120, brightLight: 60, lightAngle: 45 }),
+          },
+          hoodedOpen: {
+            label: 'Hooded Lantern (Open)',
+            callback: () => emathji.Helpers.tokenUpdate({ dimLight: 60, brightLight: 30, lightAngle: 360 }),
+          },
+          hoodedClosed: {
+            label: 'Hooded Lantern (Closed)',
+            callback: () => emathji.Helpers.tokenUpdate({ dimLight: 5, brightLight: 0, lightAngle: 360 }),
+          },
+        },
+      }).render(true);
+    },
+  },
 };

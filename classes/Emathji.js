@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import Emojerators from '../data/emojerators.js';
 import Commandjis from '../data/commandjis.js';
-import { log } from '../js/helpers.js';
+import { log, Helpers } from '../js/helpers.js';
 
 const MOJI_TYPES = {
   EMOJERATORS: 0,
@@ -13,6 +13,7 @@ export default class Emathji {
     // Load default emojerators and commandjis
     this.emojerators = Emojerators;
     this.commandjis = Commandjis;
+    this.Helpers = Helpers;
   }
 
   /**
@@ -267,15 +268,5 @@ export default class Emathji {
     }
     log(`hasAnyMoji? ${text} ❌`);
     return false;
-  }
-
-  /**
-   * Converts ms to human readable amt of time
-   * @param {number} s Milliseconds
-   */
-  msToTime(s) {
-    const pad = (n, z = 2) => (`00${n}`).slice(-z);
-    // eslint-disable-next-line no-bitwise
-    return `${pad(s / 3.6e6 | 0)}:${pad((s % 3.6e6) / 6e4 | 0)}:${pad((s % 6e4) / 1000 | 0)}`;
   }
 }

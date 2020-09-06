@@ -44,13 +44,13 @@ export default {
   // Dice modimoji
   '🙂': {
     aliases: [':slight_smile:'],
-    note: 'Want to drop one of those pesky 💩 rolls? Look no further than this 🅰️rcane sigil',
+    note: 'Want to drop one of those pesky 💩 rolls? Roll with 🅰️dvantage',
     example: '`1d20🙂` == `1d20dl`',
     parse: (formula) => formula.replace(/🙂/g, 'dl'),
   },
   '🙁': {
     aliases: [':slight_frown:'],
-    note: 'The opposite of the ⬆️, of course',
+    note: 'Embrace some dis🅰️dvantage',
     example: '`1d20🙁` == `1d20dh`',
     parse: (formula) => formula.replace(/🙁/g, 'dh'),
   },
