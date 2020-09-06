@@ -13,14 +13,14 @@ export default {
       ':lying_face:',
     ],
     note: 'Sneakymojis',
-    example: '`1⭐1` == `1+1`',
+    example: '`1d20🥳🤫` == `1d20` (But you will always roll a 20)',
     parse: (formula) => formula.replace(/🤫/g, ''),
   },
   // Emojerators
   '⭐': {
     aliases: ['🌟', ':star:', ':star2:'],
     note: 'Alias for `*`',
-    example: '`1⭐1` == `1+1`',
+    example: '`1⭐1` == `1*1`',
     parse: (formula) => formula.replace(/⭐/g, '*'),
   },
   '🔪': {
@@ -93,7 +93,7 @@ export default {
   // Numeric Emoji
   '🌿': {
     aliases: [':herb:'],
-    note: '🌿 are sources of 420 important nutrients',
+    note: 'are sources of 420 important nutrients',
     example: '`/r 1d🌿` == `1d420`',
     parse: (formula) => formula.replace(/🌿/g, '420'),
   },
@@ -112,7 +112,7 @@ export default {
   },
   '🐱': {
     aliases: ['🐈', ':cat:', ':cat2:'],
-    note: '🐈 are OK too, I rate them a 20',
+    note: 'are OK too, I rate them a 20',
     example: '`/r 1d🐱` == `1d20`',
     parse: (formula) => formula.replace(/🐱/g, '20'),
   },
@@ -130,19 +130,19 @@ export default {
   },
   '🎸': {
     aliases: [':guitar:'],
-    note: '🎸 go to `11`, of course.',
+    note: 'go to `11`, of course.',
     example: '`/r 1d🎸` == `1d11`',
     parse: (formula) => formula.replace(/🎸/g, '11'),
   },
   '🔟': {
     aliases: [':ten:'],
-    note: '🔟',
+    note: '10',
     example: '`/r 1d🔟` == `1d10`',
     parse: (formula) => formula.replace(/🔟/g, '10'),
   },
   '9️⃣': {
     aliases: [':nine:'],
-    note: '9️⃣',
+    note: '9️',
     example: '`/r 1d9️⃣` == `1d9`',
     parse: (formula) => formula.replace(/9️⃣/g, '9'),
   },
@@ -178,7 +178,7 @@ export default {
   },
   '🔱': {
     aliases: ['3️⃣', ':three:', ':trident:'],
-    note: '3️⃣',
+    note: '3',
     example: '`/r 1d🔱` == `1d3`',
     parse: (formula) => formula.replace(/🔱/g, '3'),
   },
@@ -196,7 +196,7 @@ export default {
   },
   '0️⃣': {
     aliases: [':zero:'],
-    note: '0️⃣',
+    note: '0',
     example: '`/r 0️⃣d20` == `0d20`',
     parse: (formula) => formula.replace(/0️⃣/g, '0'),
   },

@@ -41,11 +41,11 @@ Example: `🩹💡` Open token light picker
 
 `🤫`: **Sneakymojis**
  - Aliases: `🤫 :shush: :shushing_face: 🐁 :mouse: 🐀 :rat: 🤥 :lying_face:`
- - Example: `1⭐1` == `1+1`
+ - Example: `1d20🥳🤫` == `1d20` (But you will always roll a 20)
 
 `⭐`: **Alias for `*`**
  - Aliases: `🌟 :star: :star2:`
- - Example: `1⭐1` == `1+1`
+ - Example: `1⭐1` == `1*1`
 
 `🔪`: **Alias for `/`**
  - Aliases: `:knife: 🗡️ :dagger: 🪓 :axe: 🩹 :adhesive_bandage`
@@ -87,7 +87,7 @@ Example: `🩹💡` Open token light picker
  - Aliases: `:eggplant:`
  - Example: `1🍆6` == `1D6`
 
-`🌿`: **🌿 are sources of 420 important nutrients**
+`🌿`: **are sources of 420 important nutrients**
  - Aliases: `:herb:`
  - Example: `/r 1d🌿` == `1d420`
 
@@ -99,7 +99,7 @@ Example: `🩹💡` Open token light picker
  - Aliases: `:unicorn:`
  - Example: `/r 1d🦄` == `1d21`
 
-`🐱`: **🐈 are OK too, I rate them a 20**
+`🐱`: **are OK too, I rate them a 20**
  - Aliases: `🐈 :cat: :cat2:`
  - Example: `/r 1d🐱` == `1d20`
 
@@ -111,15 +111,15 @@ Example: `🩹💡` Open token light picker
  - Aliases: `:third_place`
  - Example: `/r 1d🥈` == `1d18`
 
-`🎸`: **🎸 go to `11`, of course.**
+`🎸`: **go to `11`, of course.**
  - Aliases: `:guitar:`
  - Example: `/r 1d🎸` == `1d11`
 
-`🔟`: **🔟**
+`🔟`: **10**
  - Aliases: `:ten:`
  - Example: `/r 1d🔟` == `1d10`
 
-`9️⃣`: **9️⃣**
+`9️⃣`: **9️**
  - Aliases: `:nine:`
  - Example: `/r 1d9️⃣` == `1d9`
 
@@ -143,7 +143,7 @@ Example: `🩹💡` Open token light picker
  - Aliases: `:four:`
  - Example: `/r 1d4️⃣` == `1d4`
 
-`🔱`: **3️⃣**
+`🔱`: **3**
  - Aliases: `3️⃣ :three: :trident:`
  - Example: `/r 1d🔱` == `1d3`
 
@@ -155,7 +155,7 @@ Example: `🩹💡` Open token light picker
  - Aliases: `1️⃣ :one: :potato: 🥌 :curling_stone:`
  - Example: `/r 🥔d20` == `1d20`
 
-`0️⃣`: **0️⃣**
+`0️⃣`: **0**
  - Aliases: `:zero:`
  - Example: `/r 0️⃣d20` == `0d20`
 
