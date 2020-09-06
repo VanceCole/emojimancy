@@ -30,7 +30,7 @@ Example: \`🩹💡\` Open token light picker
 const cmds = Object.keys(commandjis).map((emoji) => {
   const { note, aliases, example } = commandjis[emoji];
   const alia = aliases.map((alias) => alias).join(' ');
-  const line = `\`${emoji}\`: ${note}\n - Aliases: ${alia}\n - Example: ${example}`;
+  const line = `\`${emoji}\`: ${note}\n - Aliases: \`${alia}\`\n - Example: ${example}`;
   return line;
 });
 
@@ -45,7 +45,7 @@ out += `
 const list = Object.keys(emojerators).map((emoji) => {
   const { note, aliases, example } = emojerators[emoji];
   const alia = aliases.map((alias) => alias).join(' ');
-  const line = `\`${emoji}\`: ${note}\n - Aliases: ${alia}\n - Example: ${example}`;
+  const line = `\`${emoji}\`: ${note}\n - Aliases: \`${alia}\`\n - Example: ${example}`;
   return line;
 });
 
