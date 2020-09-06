@@ -35,6 +35,7 @@ module.exports = {
     ],
   },
   globals: {
+    Emathji: true,
     AudioHelper: 'readonly',
     Collection: 'readonly',
     Hooks: 'readonly',
