@@ -1,9 +1,17 @@
 import Emathji from '../classes/Emathji.js';
+import config from '../data/config.js';
 import { log } from './helpers.js';
 
 const emathji = new Emathji();
 window.Emathji = Emathji;
 window.emathji = emathji;
+
+Hooks.once('init', () => {
+  // Register settings
+  config.forEach((cfg) => {
+    game.settings.register('emojimancy', cfg.name, cfg.data);
+  });
+});
 
 /**
  * ⛺️ 📪 👃 🗺 🍚 😝 💥 🐈 🎥

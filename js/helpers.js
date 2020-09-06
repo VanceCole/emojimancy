@@ -6,7 +6,7 @@ export const PATH = 'modules/emathji';
 * @param force {Boolean}        Log output even if CONFIG.debug.simplefog = false
 */
 export function log(data, force = false) {
-  if (CONFIG.debug.emathji || force) {
+  if (game.settings.get('emojimancy', 'debug') || force) {
     // eslint-disable-next-line no-console
     if (typeof data === 'string') console.log(`Emathji | ${data}`);
     // eslint-disable-next-line no-console

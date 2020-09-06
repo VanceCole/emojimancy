@@ -177,7 +177,7 @@ export default {
     parse: (formula) => formula.replace(/4️⃣/g, '4'),
   },
   '🔱': {
-    aliases: ['3️⃣', ':three:', ':trident:',],
+    aliases: ['3️⃣', ':three:', ':trident:'],
     note: '3️⃣',
     example: '`/r 1d🔱` == `1d3`',
     parse: (formula) => formula.replace(/🔱/g, '3'),

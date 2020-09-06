@@ -39,10 +39,10 @@ export default class Emathji {
   parseCommandji(string, data) {
     let s = this.deAlias(string, 1);
     Object.keys(this.commandjis).forEach((emoji) => {
-      if (string.startsWith(emoji)) {
+      if (s.startsWith(emoji)) {
         const { parse } = this.commandjis[emoji];
         log(`Commandji: ${emoji} ✔️`);
-        s = parse(s, data);
+        s = parse(s, data) || s;
       }
     });
     return s;
@@ -53,6 +53,7 @@ export default class Emathji {
    * @param {String} content Chat message content string
    */
   isCommandji(content) {
+    if (game.user.role < game.settings.get('emojimancy', 'commandji-permission')) return false;
     let is = false;
     ['🩹', ':adhesive_bandage:'].some((k) => {
       if (content.startsWith(k)) {
@@ -167,6 +168,8 @@ export default class Emathji {
    */
   hasSneakymoji(formula) {
     log(`Testing sneakymoji in ${formula}`);
+    if (game.user.isGM && game.settings.get('emojimancy', 'always-stealthy')) return true;
+    if (game.user.role < game.settings.get('emojimancy', 'stealthymoji-permission')) return false;
     // eslint-disable-next-line no-restricted-syntax
     return Object.values(this.emojerators['🤫'].aliases).some((emoji) => this.hasMoji(formula, emoji));
   }

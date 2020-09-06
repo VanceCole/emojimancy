@@ -11,7 +11,6 @@ export default {
       const sfx = (r.dice[2].total === 1) ? 'a.m.' : 'p.m.';
       const time = `${hour}:${min} ${sfx}`;
       data.content = time;
-      r.toMessage();
     },
   },
   '⏱️': {
@@ -25,7 +24,7 @@ export default {
       }
       else {
         const now = performance.now();
-        const time = emathji.msToTime(now - emathji.stopwatch);
+        const time = emathji.Helpers.msToTime(now - emathji.stopwatch);
         data.content = `⏱️: ${time}`;
         delete emathji.stopwatch;
       }
