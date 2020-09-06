@@ -43,18 +43,16 @@ function handleChatRoll(data) {
   const moji = Emathji.hasAnyMoji(data.content);
   if (!moji) return;
 
+  // Get stored roll
+  let roll = JSON.parse(data.roll);
   // Run any post filters
-  const post = Emathji.postMojerate(data.content);
-
-  const r = JSON.parse(data.roll);
-  r.result = post;
-  r.total = post;
+  roll = Emathji.postMojerate(roll, data.content);
   // Check if roll has any sneakymoji
   const sneaky = Emathji.hasSneakymoji(data.content);
   if (!sneaky) {
     if (data.flavor) data.flavor += `\n[${data.content}]`;
     else data.flavor = `[${Emathji.deAlias(data.content)}]`;
   }
-  data.roll = JSON.stringify(r);
+  data.roll = JSON.stringify(roll);
   log('ChatRoll Handled 😏');
 }
