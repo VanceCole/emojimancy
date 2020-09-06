@@ -5,7 +5,7 @@ import commandjis from './data/commandjis.js';
 let out = '';
 
 out += `
-# ✨ Emojimancy 🧙: 🤷 + 🤖 / 💩 = ❓
+# ✨ Emojimancy 🧙  -  🤷 + 🤖 / 💩 = ❓
 
 Emojimancy is a pathway to many abilities, some considered to be unnatural.
 
@@ -29,8 +29,8 @@ Example: \`🩹💡\` Open token light picker
 
 const cmds = Object.keys(commandjis).map((emoji) => {
   const { note, aliases, example } = commandjis[emoji];
-  const alia = aliases.map((alias) => alias).join();
-  const line = `${emoji}: ${note}\nAliases: [${alia}]\nExample: ${example}`;
+  const alia = aliases.map((alias) => alias).join(' ');
+  const line = `${emoji}: ${note}\n - Aliases: ${alia}\n - Example: ${example}`;
   return line;
 });
 
@@ -44,8 +44,8 @@ out += `
 
 const list = Object.keys(emojerators).map((emoji) => {
   const { note, aliases, example } = emojerators[emoji];
-  const alia = aliases.map((alias) => alias).join();
-  const line = `${emoji}: ${note}\nAliases: [${alia}]\nExample: ${example}`;
+  const alia = aliases.map((alias) => alias).join(' ');
+  const line = `${emoji}: ${note}\n - Aliases: ${alia}\n - Example: ${example}`;
   return line;
 });
 
