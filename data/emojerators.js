@@ -1,5 +1,5 @@
 export default {
-  // Stealthymojis
+  // Sneakymojis
   '🤫': {
     aliases: [
       '🤫',
@@ -12,7 +12,7 @@ export default {
       '🤥',
       ':lying_face:',
     ],
-    note: 'Stealthymojis: Don\'t want your players knowing you are wielding the awesome powers of Emojimancy against them? Just use your choice of Sneakymoji and they\'ll never suspect a thing.',
+    note: 'Sneakymojis',
     example: '`1⭐1` == `1+1`',
     parse: (formula) => formula.replace(/🤫/g, ''),
   },
@@ -208,8 +208,7 @@ export default {
      - 30% Chance to be become + or -
      -  5% Chance to become *
      -  4% Chance to become /
-     -  1% Chance to become ^
-    `,
+     -  1% Chance to become ^`,
     example: '`1d20🤷5` == `1d20?`',
     parse: (formula) => {
       const parts = formula.split('🤷');

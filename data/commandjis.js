@@ -32,7 +32,7 @@ export default {
   },
   '💡': {
     aliases: [':lightbulb:', '🔦', ':flashlight:'],
-    note: 'Start/Stop Stopwatch',
+    note: 'Token quick light picker',
     example: '🩹💡',
     parse: (string, data) => {
       new Dialog({
