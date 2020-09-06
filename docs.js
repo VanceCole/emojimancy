@@ -11,7 +11,8 @@ Emojimancy is a pathway to many abilities, some considered to be unnatural.
 
 ## "Easy" emoji powered rolls!
 
-Do you find formula like \`/r 2d8kh+100\` tedious and hard to remember? Well now you can just do \`/r 2️⃣🍆🎱🙂➕💯\`!
+Do you find formula like \`/r 2d8kh+100\` tedious and hard to remember?
+Well now you can just do \`/r 2️⃣🍆🎱🙂➕💯\`!
 
 ## 💩 Fudging rolls & outright rigging rolls 🤥
 
