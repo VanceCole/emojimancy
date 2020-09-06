@@ -186,7 +186,7 @@ export default class Emathji {
    * Sets the results of the given target dice type (fx. d20) to the provided value
    * @param {Object}  roll   The roll object from foundry
    * @param {Integer} target The type of dice to set
-   * @param {Integer} value  The value to set the result of each dice to
+   * @param {Integer} value  The value to set the result of each dice to, if true, maximizes
    */
   dieSet(roll, target, value) {
     roll.dice.forEach((die) => {
@@ -194,6 +194,25 @@ export default class Emathji {
         die.rolls.forEach((r) => {
           if (value === true) r.roll = die.faces;
           else r.roll = value;
+        });
+      }
+    });
+    return this.retotal(roll);
+  }
+
+  /**
+   * Adjust the dice by the given amount, within the bounds of the die type
+   * @param {Object}  roll   The roll object from foundry
+   * @param {Integer} target The type of dice to fudge
+   * @param {Integer} amount The amount to fudge by
+   */
+  fudge(roll, target, amount) {
+    roll.dice.forEach((die) => {
+      if (target === true || die.faces === target) {
+        die.rolls.forEach((r) => {
+          if (r.roll + amount > die.faces) r.roll = die.faces;
+          else if (r.roll + amount < 1) r.roll = 1;
+          else r.roll += amount;
         });
       }
     });
