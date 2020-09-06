@@ -5,8 +5,13 @@
   "author": "Vance Cole",
   "version": "0.0.1",
   "minimumCoreVersion": "0.6.0",
-  "compatibleCoreVersion": "0.6.4",
+  "compatibleCoreVersion": "0.6.6",
   "esmodules": [
     "./js/emojimancy.js"
-  ]
+  ],
+  "url": "https://github.com/VanceCole/emojimancy",
+  "manifest": "https://raw.githubusercontent.com/VanceCole/emojimancy/master/module.json",
+  "readme": "https://github.com/VanceCole/emojimancy/blob/master/README.md",
+  "changelog": "https://github.com/VanceCole/emojimancy/blob/master/changelog.md",
+  "download": "https://github.com/VanceCole/emojimancy/releases/download/0.0.1/emojimancy.zip"
 }
