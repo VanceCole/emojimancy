@@ -3,17 +3,17 @@
 
 Emojimancy is a pathway to many abilities, some considered to be unnatural.
 
-# 💩 Fudging rolls & outright rigging rolls 🤥
+## 💩 Fudging rolls & outright rigging rolls 🤥
 
 Always wanted to fudge your rolls a bit? Try the ⬆️ emojerator to get a plus one to all your dice!
 
 Want to outright rig the roll? Use the 🥳 to maximize all dice, or the 💩 to roll all ones!
 
-# 🤫 Sneakymoji 🐁
+## 🤫 Sneakymoji 🐁
 
 Don't want your players knowing you are wielding the awesome powers of Emojimancy against them? Just use your choice of Sneakymoji and they'll never suspect a thing.
 
-# 🕹️ Commandjis
+## 🕹️ Commandjis
 
 Commandjis are powerful macro like commands you can use! Commandji are, of course, denoted by the 🩹 slash operator.
 
@@ -31,7 +31,7 @@ Example: 🩹⏱️
 Aliases: [:lightbulb:,🔦,:flashlight:]
 Example: 🩹💡
 
-# Emojerators
+## Emojerators
 
 🤫: Sneakymojis
 Aliases: [🤫,:shush:,:shushing_face:,🐁,:mouse:,🐀,:rat:,🤥,:lying_face:]
