@@ -1,10 +1,18 @@
 /* eslint-disable class-methods-use-this */
 import Emojerators from '../data/emojerators.js';
+import Commandjis from '../data/commandjis.js';
 import { log } from '../js/helpers.js';
+
+const MOJI_TYPES = {
+  EMOJERATORS: 0,
+  COMMANDJIS: 1,
+};
 
 export default class Emathji {
   constructor() {
+    // Load default emojerators and commandjis
     this.emojerators = Emojerators;
+    this.commandjis = Commandjis;
   }
 
   /**
@@ -15,12 +23,77 @@ export default class Emathji {
    */
   parseEmoji(formula, emoji) {
     let f = formula;
-    const { parse } = this.emojerators[emoji];
     if (f.indexOf(emoji) !== -1) {
       log(`${emoji} ? ✔️`);
-      f = parse(f);
+      f = this.emojerators[emoji].parse(f);
     }
     return f;
+  }
+
+  /**
+   * Checks each commandji and applies any parse operations
+   * @param {String} string The command string
+   * @param {Object} data   Chat Data object
+   */
+  parseCommandji(string, data) {
+    let s = this.deAlias(string, 1);
+    Object.keys(this.commandjis).forEach((emoji) => {
+      if (string.startsWith(emoji)) {
+        const { parse } = this.commandjis[emoji];
+        log(`Commandji: ${emoji} ✔️`);
+        s = parse(s, data);
+      }
+    });
+    return s;
+  }
+
+  /**
+   * Checks if given chat message is a commandji
+   * @param {String} content Chat message content string
+   */
+  isCommandji(content) {
+    let is = false;
+    ['🩹', ':adhesive_bandage:'].some((k) => {
+      if (content.startsWith(k)) {
+        log('🩹 ? ✔️');
+        is = content.substring(k.length);
+        return true;
+      }
+      return false;
+    });
+    return is;
+  }
+
+  /**
+   * Checks if chat data is a commandji and if so passes to parser
+   * @param {Object} data Chat data object
+   */
+  handleChat(data) {
+    const string = this.isCommandji(data.content);
+    if (string) this.parseCommandji(string, data);
+  }
+
+  /**
+   * Callback for chat hook to check and handle roll type events
+   * @param {Object} data Chat data
+   */
+  handleChatRoll(data) {
+    log('Intercepting ChatRoll 🚀');
+    // Check if roll has any emoji, if not just skip
+    const moji = this.hasAnyMoji(data.content);
+    if (!moji) return;
+    // Get stored roll
+    let roll = JSON.parse(data.roll);
+    // Run any post filters
+    roll = this.postMojerate(roll, data.content);
+    // Check if roll has any sneakymoji
+    const sneaky = this.hasSneakymoji(data.content);
+    if (!sneaky) {
+      if (data.flavor) data.flavor += `\n[${data.content}]`;
+      else data.flavor = `[${this.deAlias(data.content)}]`;
+    }
+    data.roll = JSON.stringify(roll);
+    log('ChatRoll Handled 😏');
   }
 
   /**
@@ -30,12 +103,15 @@ export default class Emathji {
    * @param {Array}  aliases   List of aliases to be tested
    * @returns {String} deAliased string
    */
-  deAlias(formula) {
+  deAlias(formula, type = 0) {
     log(`deAliasing: ${formula}`);
     let f = formula;
+    let list;
+    if (type === MOJI_TYPES.EMOJERATORS) list = this.emojerators;
+    else if (type === MOJI_TYPES.COMMANDJIS) list = this.commandjis;
     // eslint-disable-next-line no-restricted-syntax
-    Object.keys(this.emojerators).forEach((emoji) => {
-      const { aliases } = this.emojerators[emoji];
+    Object.keys(list).forEach((emoji) => {
+      const { aliases } = list[emoji];
       aliases.forEach((alias) => {
         f = f.replace(new RegExp(alias, 'g'), emoji);
       });
@@ -172,5 +248,15 @@ export default class Emathji {
     }
     log(`hasAnyMoji? ${text} ❌`);
     return false;
+  }
+
+  /**
+   * Converts ms to human readable amt of time
+   * @param {number} s Milliseconds
+   */
+  msToTime(s) {
+    const pad = (n, z = 2) => (`00${n}`).slice(-z);
+    // eslint-disable-next-line no-bitwise
+    return `${pad(s / 3.6e6 | 0)}:${pad((s % 3.6e6) / 6e4 | 0)}:${pad((s % 6e4) / 1000 | 0)}`;
   }
 }
