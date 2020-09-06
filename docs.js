@@ -9,6 +9,10 @@ out += `
 
 Emojimancy is a pathway to many abilities, some considered to be unnatural.
 
+## "Easy" emoji powered rolls!
+
+Do you find formula like \`/r 2d8+100kh\` tedious and hard to remember? Well now you can just do \`/r 2️⃣🍆🎱➕💯\`!
+
 ## 💩 Fudging rolls & outright rigging rolls 🤥
 
 Always wanted to fudge your rolls a bit? Try the ⬆️ emojerator to get a plus one to all your dice!
