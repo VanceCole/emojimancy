@@ -1,7 +1,7 @@
 
 # ✨ Emojimancy 🧙  -  🤷 + 🤖 / 💩 = ❓
 
-Emojimancy is a pathway to many abilities, some considered to be unnatural.
+**Emojimancy is a pathway to many abilities, some considered to be unnatural.**
 
 ## "Easy" emoji powered rolls!
 
@@ -104,11 +104,11 @@ Example: `🩹💡` Open token light picker
  - Example: `/r 1d🐱` == `1d20`
 
 `🥈`: **So close.**
- - Aliases: `:second_place`
+ - Aliases: `:second_place:`
  - Example: `/r 1d🥈` == `1d19`
 
 `🥉`: **Not so close.**
- - Aliases: `:third_place`
+ - Aliases: `:third_place:`
  - Example: `/r 1d🥈` == `1d18`
 
 `🎸`: **go to `11`, of course.**

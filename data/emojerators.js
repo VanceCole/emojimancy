@@ -117,13 +117,13 @@ export default {
     parse: (formula) => formula.replace(/🐱/g, '20'),
   },
   '🥈': {
-    aliases: [':second_place'],
+    aliases: [':second_place:'],
     note: 'So close.',
     example: '`/r 1d🥈` == `1d19`',
     parse: (formula) => formula.replace(/🥈/g, '19'),
   },
   '🥉': {
-    aliases: [':third_place'],
+    aliases: [':third_place:'],
     note: 'Not so close.',
     example: '`/r 1d🥈` == `1d18`',
     parse: (formula) => formula.replace(/🥉/g, '18'),

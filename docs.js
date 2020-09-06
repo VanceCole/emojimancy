@@ -7,7 +7,7 @@ let out = '';
 out += `
 # ✨ Emojimancy 🧙  -  🤷 + 🤖 / 💩 = ❓
 
-Emojimancy is a pathway to many abilities, some considered to be unnatural.
+**Emojimancy is a pathway to many abilities, some considered to be unnatural.**
 
 ## "Easy" emoji powered rolls!
 
